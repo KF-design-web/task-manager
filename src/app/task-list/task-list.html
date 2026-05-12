@@ -1,13 +1,20 @@
 <div class="task-list">
   <h2>My Tasks</h2>
-  
+
+  <!-- Add task form -->
+  <div class="add-task">
+    <input 
+      type="text" 
+      [(ngModel)]="newTaskName" 
+      placeholder="Enter a new task..."
+    />
+    <button (click)="addTask()">Add Task</button>
+  </div>
+
+  <!-- Task list -->
   <div class="task-item" *ngFor="let task of tasks">
-    <span class="status" [class.done]="task.completed">
-      {{ task.completed ? '✅' : '⬜' }}
-    </span>
-    <span class="task-name" [class.strikethrough]="task.completed">
-      {{ task.name }}
-    </span>
+    <span>{{ task.completed ? '✅' : '⬜' }}</span>
+    <span [class.strikethrough]="task.completed">{{ task.name }}</span>
   </div>
 
 </div>
