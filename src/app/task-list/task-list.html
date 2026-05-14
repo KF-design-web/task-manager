@@ -14,7 +14,10 @@
   <!-- Task list -->
   <div class="task-item" *ngFor="let task of tasks">
     <span>{{ task.completed ? '✅' : '⬜' }}</span>
-    <span [class.strikethrough]="task.completed">{{ task.name }}</span>
+    <a [routerLink]="['/task', task.id]" 
+       [class.strikethrough]="task.completed">
+      {{ task.name }}
+    </a>
   </div>
 
 </div>
