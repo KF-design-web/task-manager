@@ -1,23 +1,32 @@
-<div class="task-list">
-  <h2>My Tasks</h2>
+<div class="container">
+  <mat-card class="main-card">
+    <mat-card-header>
+      <mat-card-title>My Tasks</mat-card-title>
+      <mat-card-subtitle>{{ tasks.length }} tasks total</mat-card-subtitle>
+    </mat-card-header>
 
-  <!-- Add task form -->
-  <div class="add-task">
-    <input 
-      type="text" 
-      [(ngModel)]="newTaskName" 
-      placeholder="Enter a new task..."
-    />
-    <button (click)="addTask()">Add Task</button>
-  </div>
+    <mat-card-content>
+      <!-- Add task form -->
+      <div class="add-task">
+        <mat-form-field appearance="outline" class="task-input">
+          <mat-label>New task</mat-label>
+          <input matInput [(ngModel)]="newTaskName" placeholder="Enter a task..."/>
+          <mat-icon matSuffix>edit</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addTask()">
+          <mat-icon>add</mat-icon> Add Task
+        </button>
+      </div>
 
-  <!-- Task list -->
-  <div class="task-item" *ngFor="let task of tasks">
-    <span>{{ task.completed ? '✅' : '⬜' }}</span>
-    <a [routerLink]="['/task', task.id]" 
-       [class.strikethrough]="task.completed">
-      {{ task.name }}
-    </a>
-  </div>
-
+      <!-- Task list -->
+      <div class="task-item" *ngFor="let task of tasks">
+        <mat-checkbox [checked]="task.completed" color="primary">
+        </mat-checkbox>
+        <a [routerLink]="['/task', task.id]"
+           [class.strikethrough]="task.completed">
+          {{ task.name }}
+        </a>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
